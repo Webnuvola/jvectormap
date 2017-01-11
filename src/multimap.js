@@ -19,6 +19,7 @@ function(code, multiMap){
          multiMap.defaultProjection+'-en.js';
 }
 </pre>
+ * @param {Function} params.backButtonText Text of the back button for localization
  */
 jvm.MultiMap = function(params) {
   var that = this;
@@ -28,12 +29,13 @@ jvm.MultiMap = function(params) {
   this.params.maxLevel = this.params.maxLevel || Number.MAX_VALUE;
   this.params.main = this.params.main || {};
   this.params.main.multiMapLevel = 0;
+  this.params.backButtonText = this.params.backButtonText || 'Back';
   this.history = [ this.addMap(this.params.main.map, this.params.main) ];
   this.defaultProjection = this.history[0].mapData.projection.type;
   this.mapsLoaded = {};
 
   this.params.container.css({position: 'relative'});
-  this.backButton = jvm.$('<div/>').addClass('jvectormap-goback').text('Back').appendTo(this.params.container);
+  this.backButton = jvm.$('<div/>').addClass('jvectormap-goback').text(this.params.backButtonText).appendTo(this.params.container);
   this.backButton.hide();
   this.backButton.click(function(){
     that.goBack();
