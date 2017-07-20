@@ -37,6 +37,7 @@
       options = arguments[1] || {};
       options.container = this;
       map = new jvm.MultiMap(options);
+      this.data('multiMapObject', map);
     } else {
       options = options || {};
       options.container = this;
