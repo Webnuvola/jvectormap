@@ -33,6 +33,10 @@
     } else if ((options === 'set' || options === 'get') && apiParams[options][arguments[1]]) {
       methodName = arguments[1].charAt(0).toUpperCase()+arguments[1].substr(1);
       return map[options+methodName].apply(map, Array.prototype.slice.call(arguments, 2));
+    } else if (options === 'multiMap') {
+      options = arguments[1] || {};
+      options.container = this;
+      map = new jvm.MultiMap(options);
     } else {
       options = options || {};
       options.container = this;
